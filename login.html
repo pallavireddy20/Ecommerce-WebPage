@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Page</title>
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #121212;
+      color: #fff;
+      padding: 20px;
+    }
+
+    header {
+      display: flex;
+      gap: 20px;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    header i {
+      cursor: pointer;
+    }
+
+    .shadow {
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .search-box, .cart, .user, .navbar {
+      display: none;
+      padding: 20px;
+      margin-bottom: 20px;
+      background: #1e1e1e;
+      border-radius: 8px;
+    }
+
+    .active {
+      display: block;
+    }
+
+    .user input, .user button {
+      display: block;
+      margin: 10px 0;
+      padding: 10px;
+      width: 100%;
+      background: #2c2c2c;
+      border: 1px solid #444;
+      color: #fff;
+    }
+
+    .swiper {
+      width: 100%;
+      max-width: 600px;
+      margin-top: 40px;
+    }
+
+    .swiper-slide {
+      background: #333;
+      color: #fff;
+      padding: 40px;
+      text-align: center;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <i id="search-icon">🔍</i>
+  <i id="cart-icon">🛒</i>
+  <i id="user-icon">👤</i>
+  <i id="menu-icon">📋</i>
+</header>
+
+<div class="search-box">Search Bar Content</div>
+<div class="cart">Your cart is empty.</div>
+
+<div class="user">
+  <h2>Login</h2>
+  <input type="text" id="username" placeholder="Username" />
+  <input type="password" id="password" placeholder="Password" />
+  <button id="loginBtn">Login</button>
+</div>
+
+<nav class="navbar">Navigation Links</nav>
+
+<div class="swiper new-arrival">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide">Slide 1</div>
+    <div class="swiper-slide">Slide 2</div>
+    <div class="swiper-slide">Slide 3</div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+  let search = document.querySelector('.search-box');
+  let cart = document.querySelector('.cart');
+  let user = document.querySelector('.user');
+  let navbar = document.querySelector('.navbar');
+  let header = document.querySelector('header');
+
+  document.querySelector('#search-icon').onclick = () => {
+    search.classList.toggle('active');
+    cart.classList.remove('active');
+    user.classList.remove('active');
+    navbar.classList.remove('active');
+  };
+
+  document.querySelector('#cart-icon').onclick = () => {
+    cart.classList.toggle('active');
+    search.classList.remove('active');
+    user.classList.remove('active');
+    navbar.classList.remove('active');
+  };
+
+  document.querySelector('#user-icon').onclick = () => {
+    user.classList.toggle('active');
+    search.classList.remove('active');
+    cart.classList.remove('active');
+    navbar.classList.remove('active');
+  };
+
+  document.querySelector('#menu-icon').onclick = () => {
+    navbar.classList.toggle('active');
+    search.classList.remove('active');
+    cart.classList.remove('active');
+    user.classList.remove('active');
+  };
+
+  window.onscroll = () => {
+    search.classList.remove('active');
+    cart.classList.remove('active');
+    user.classList.remove('active');
+    navbar.classList.remove('active');
+  };
+
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('shadow', window.scrollY > 0);
+  });
+
+  var swiper = new Swiper(".new-arrival", {
+    spaceBetween: 20,
+    loop: true,
+    autoplay: {
+      delay: 5500,
+      disableOnInteraction: false,
+    },
+    centeredSlides: true,
+    breakpoints: {
+      0: {
+        slidesPerView: 1,
+      },
+      568: {
+        slidesPerView: 2,
+      },
+      768: {
+        slidesPerView: 2,
+      },
+      1020: {
+        slidesPerView: 3,
+      },
+    },
+  });
+
+  document.querySelector('#loginBtn').onclick = () => {
+    const userVal = document.querySelector('#username').value;
+    const passVal = document.querySelector('#password').value;
+
+    if (userVal === "admin" && passVal === "1234") {
+      alert("Login successful!");
+    } else {
+      alert("Invalid credentials.");
+    }
+  };
+</script>
+
+</body>
+</html>
